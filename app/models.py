@@ -1,11 +1,5 @@
 from django.db import models
 
-"""
-- Todo
-    - Title
-    - DateTime
-    - Status
-"""
 
 class Todo(models.Model):
     title = models.CharField(max_length=50)

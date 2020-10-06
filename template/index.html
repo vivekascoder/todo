@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo's List of {{name}}</h1>
-    <hr>
-    <br>
-    {%for i in todos%}
-    <ul>
-        <li>Title: {{i.title}}</li>
-        <li>Date: {{i.date}}</li>
-        <li>Status: {{i.status}}</li>
-    </ul>
-    <hr style="margin: 0 20%">
-    {% endfor %}
-</body>
-</html>
+{% extends './base.html' %}
+
+{% block title%} HOME {% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold px-4 py-3 bg-gray-400 text-gray-100">Todo's List of User</h1>
+<hr>
+<a href="{% url 'todo-create' %}">Create a new todo</a>
+<br>
+{%for i in todos%}
+<ul class="p-4 bg-gray-200 m-4">
+    <li>
+        {% if i.status == False %}
+        Title: <a style="color: blue;" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
+        {%else%}
+        Title: <a style="color: green;" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
+        {% endif %}
+    </li>
+    <li><a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-teal-700 bg-teal-500 inline-block" href="{% url 'todo-update' i.pk %}">Update Todo</a>
+    <a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-red-700 bg-red-500 inline-block" href="{% url 'todo-delete' i.pk %}">Delete Todo</a></li>
+</ul>
+<hr style="margin: 0 20%">
+{% endfor %}
+{% endblock %}
