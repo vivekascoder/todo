@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Todo</title>
-</head>
-<body>
-    <h1>Create new todo.</h1>
-    <form action="" method="post">
+{%extends './base.html'%}
+
+{%block title%}Create{%endblock%}
+{%block content%}
+<div style="width: 40rem" class="mx-auto bg-gray-200 mt-8 shadow-lg rounded-lg overflow-hidden">
+    <h1 class="font-bold text-3xl uppercase px-4 py-2 bg-gray-400 text-gray-800 text-center">Create new todo.</h1>
+    <form action="" method="post" class="p-4">
         {%csrf_token%}
         {{form.as_p}}
-        <input type="submit" value="Submit Form">
+        <input type="submit" value="Submit Form" class="px-3 py-2 mt-8 bg-blue-500 text-xl uppercase font-semibold text-gray-100 hover:bg-blue-700 rounded">
     </form>
-</body>
-</html>
+</div>
+{%endblock%}

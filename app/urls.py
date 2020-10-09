@@ -8,3 +8,5 @@ urlpatterns = [
     path('create', app_views.todo_create, name="todo-create"),
     path('delete/<int:pk>', app_views.todo_delete, name="todo-delete"),
 ]
+
+

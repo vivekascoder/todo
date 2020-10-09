@@ -51,3 +51,13 @@ def todo_delete(request, pk):
         return HttpResponse(f"<h1>Wrong, Primary Key. {pk}</h1>")
     todo.delete()
     return redirect("home")
+
+
+# Step-1: CTRL + SHIFT + P
+# User Snippets
+
+class HomeView(View):
+    def get(self, request):
+        pass
+    
+

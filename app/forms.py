@@ -9,4 +9,4 @@ class StudentForm(forms.Form):
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields = ['title', 'status']
+        fields = ['title', 'status', 'category']

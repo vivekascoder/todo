@@ -4,11 +4,15 @@
 
 {% block content %}
 <h1 class="text-2xl font-bold px-4 py-3 bg-gray-400 text-gray-100">Todo's List of User</h1>
+<!-- Do It: Green -->
+<!-- Not Mandatory: Yellow -->
+<!-- Urgent: Red -->
 <hr>
 <a href="{% url 'todo-create' %}">Create a new todo</a>
 <br>
 {%for i in todos%}
-<ul class="p-4 bg-gray-200 m-4">
+{%if i.category.name == "Urgent"%}
+<ul class="p-4 bg-red-200 m-4">
     <li>
         {% if i.status == False %}
         Title: <a style="color: blue;" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
@@ -19,6 +23,31 @@
     <li><a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-teal-700 bg-teal-500 inline-block" href="{% url 'todo-update' i.pk %}">Update Todo</a>
     <a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-red-700 bg-red-500 inline-block" href="{% url 'todo-delete' i.pk %}">Delete Todo</a></li>
 </ul>
+{%elif i.category.name == "Not Mandatory"%}
+<ul class="p-4 bg-yellow-200 m-4">
+    <li>
+        {% if i.status == False %}
+        Title: <a style="color: blue;" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
+        {%else%}
+        Title: <a style="color: green;" class="line-through" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
+        {% endif %}
+    </li>
+    <li><a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-teal-700 bg-teal-500 inline-block" href="{% url 'todo-update' i.pk %}">Update Todo</a>
+    <a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-red-700 bg-red-500 inline-block" href="{% url 'todo-delete' i.pk %}">Delete Todo</a></li>
+</ul>
+{%elif i.category.name == "Do It"%}
+<ul class="p-4 bg-green-200 m-4">
+    <li>
+        {% if i.status == False %}
+        Title: <a style="color: blue;" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
+        {%else%}
+        Title: <a style="color: green;" href="{% url 'todo-view' i.pk %}">{{i.title}}</a>
+        {% endif %}
+    </li>
+    <li><a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-teal-700 bg-teal-500 inline-block" href="{% url 'todo-update' i.pk %}">Update Todo</a>
+    <a class="px-4 py-2 uppercase my-2 text-xs font-bold tracking-wide text-white rounded-lg hover:bg-red-700 bg-red-500 inline-block" href="{% url 'todo-delete' i.pk %}">Delete Todo</a></li>
+</ul>
+{%endif%}
 <hr style="margin: 0 20%">
 {% endfor %}
 {% endblock %}
