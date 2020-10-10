@@ -15,7 +15,13 @@
     </div>
     <script>
         var title = document.querySelectorAll("input[type='text']")[0];
-        console.log("Text: ", title);
+        title.classList.add("border");
+        title.classList.add("border-gray-400")
+        title.classList.add("outline-none")
+        title.classList.add("focus:border-gray-800")
+        title.classList.add("px-2")
+        title.classList.add("py-1")
+        console.log(title)
     </script>
 </body>
 </html>
